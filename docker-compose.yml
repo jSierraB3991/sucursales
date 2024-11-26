@@ -1,0 +1,38 @@
+services:
+  mongo-db:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    container_name: mongo-inscription
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: toor
+    volumes:
+      - ~/.local/data/mongo_latest:/data/db
+
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://root:toor@mongo-db:27017/
+      ME_CONFIG_BASICAUTH: false
+
+  application:
+    depends_on:
+      - mongo-db
+    build: .
+    container_name: franchise_application
+    ports:
+      - "9000:8080"
+    environment:
+      spring.data.mongodb.database: franchise_document
+      spring.data.mongodb.host: mongo-db
+      spring.data.mongodb.authentication-database: admin
+      spring.data.mongodb.port: 27017
+      spring.data.mongodb.repositories.enabled: true
+      spring.data.mongodb.username: root
+      spring.data.mongodb.password: toor
+
