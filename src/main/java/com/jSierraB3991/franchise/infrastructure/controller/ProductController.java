@@ -3,6 +3,7 @@ package com.jSierraB3991.franchise.infrastructure.controller;
 import com.jSierraB3991.franchise.domain.service.ProductService;
 import com.jSierraB3991.franchise.infrastructure.request.ProductRequest;
 import com.jSierraB3991.franchise.infrastructure.request.ProductUpdateStockRequest;
+import com.jSierraB3991.franchise.infrastructure.response.BranchOfficeByFranchiseResponse;
 import com.jSierraB3991.franchise.infrastructure.response.ProductResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,5 +44,10 @@ public class ProductController {
     public ProductResponse updateStockProduct(@PathVariable("product-id") String productId,
                                    @RequestBody ProductUpdateStockRequest request) {
         return service.updateStock(productId, request.getStock());
+    }
+
+    @GetMapping("/{franchise-id}")
+    public List<BranchOfficeByFranchiseResponse> getBranchOfficeByFranchise(@PathVariable("franchise-id") String franchiseId) {
+        return service.findBranchOffice(franchiseId);
     }
 }

@@ -2,6 +2,7 @@ package com.jSierraB3991.franchise.domain.service;
 
 import com.jSierraB3991.franchise.domain.model.Product;
 import com.jSierraB3991.franchise.infrastructure.request.ProductRequest;
+import com.jSierraB3991.franchise.infrastructure.response.BranchOfficeByFranchiseResponse;
 import com.jSierraB3991.franchise.infrastructure.response.ProductResponse;
 
 import java.util.List;
@@ -12,4 +13,5 @@ public interface ProductService {
     void delete(String productId);
     Product getProductById(String productId);
     ProductResponse updateStock(String productId, Integer newStock);
+    List<BranchOfficeByFranchiseResponse> findBranchOffice(String franchiseId);
 }
