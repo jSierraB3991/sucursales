@@ -2,12 +2,14 @@ package com.jSierraB3991.franchise.infrastructure.controller;
 
 import com.jSierraB3991.franchise.domain.service.ProductService;
 import com.jSierraB3991.franchise.infrastructure.request.ProductRequest;
+import com.jSierraB3991.franchise.infrastructure.request.ProductUpdateStockRequest;
 import com.jSierraB3991.franchise.infrastructure.response.ProductResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,5 +37,11 @@ public class ProductController {
     @DeleteMapping("/{product-id}")
     public void deleteProduct(@PathVariable("product-id") String productId) {
         service.delete(productId);
+    }
+
+    @PutMapping("/{product-id}")
+    public ProductResponse updateStockProduct(@PathVariable("product-id") String productId,
+                                   @RequestBody ProductUpdateStockRequest request) {
+        return service.updateStock(productId, request.getStock());
     }
 }

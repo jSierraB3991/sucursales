@@ -42,12 +42,22 @@ public class ProductServiceImpl implements ProductService {
         return ProductMapper.GetResponse(data);
     }
 
-    private Product getProductById(String productId) {
+    public Product getProductById(String productId) {
         var data = repository.findById(productId);
         if (data.isEmpty()) {
             throw new RuntimeException("THIS PRODUCT ID IS INVALID");
         }
         return data.get();
+    }
+
+    @Override
+    public ProductResponse updateStock(String productId, Integer newStock) {
+        var product = getProductById(productId);
+        if (product.getStock() != 0) {
+            throw new RuntimeException("THIS PRODUCT HAVE STOCK AVAILABLE");
+        }
+        product.setStock(newStock);
+        return ProductMapper.GetResponse(repository.save(product));
     }
 
     @Override
