@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -25,5 +26,7 @@ public class BranchOffice implements Serializable {
     private static final long serialVersionUID = 6244326199944362890L;
     @Id
     private String id;
+    @DocumentReference(lazy=true)
+    private Franchise franchise;
     private String name;
 }
