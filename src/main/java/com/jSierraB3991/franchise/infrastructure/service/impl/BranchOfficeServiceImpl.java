@@ -45,7 +45,7 @@ public class BranchOfficeServiceImpl implements BranchOfficeService {
     public BranchOfficeResponse FindById(String id) {
         var data = repository.findById(id);
         if (data.isEmpty()) {
-            throw new RuntimeException("INVALID ID OF FRANCHISE");
+            throw new RuntimeException("INVALID ID OF BRANCH OFFICE");
         }
         return BranchOfficeMapper.GetResponse(data.get());
     }
