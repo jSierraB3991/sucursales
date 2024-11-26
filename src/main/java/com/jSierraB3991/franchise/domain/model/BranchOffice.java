@@ -1,5 +1,6 @@
 package com.jSierraB3991.franchise.domain.model;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -18,10 +19,10 @@ import java.io.Serializable;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Builder
-@Document(collection = "franchises")
-public class Franchise implements Serializable {
+@Document(collection = "branch_office")
+public class BranchOffice implements Serializable {
     @Serial
-    private static final long serialVersionUID = 4459946113200984315L;
+    private static final long serialVersionUID = 6244326199944362890L;
     @Id
     private String id;
     private String name;
